@@ -5,7 +5,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$DIR/tools.sh"
 
 # Load Credentials
-if [ -f .env ]; then
+if [ -f "$DIR/.env" ]; then
     source "$DIR/.env"
 else
     echo "File .env not found"
