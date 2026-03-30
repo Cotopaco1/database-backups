@@ -61,5 +61,15 @@ if aws s3 cp "$FILEPATH" "$S3_PATH" --endpoint-url="$S3_ENDPOINT" --quiet; then
     echo "Backup saved correctly in $S3_BUCKET_NAME"
 else
     print_error "Error sending backup to S3"
+    exit 1;
 fi
 
+if [ -n "$CLEAN_LOCAL_BACKUPS" ] && [ "$CLEAN_LOCAL_BACKUPS" == true ]; then
+
+    echo "Deleting local backup..."
+    rm -f "$FILEPATH"
+else
+    echo "Local backup is saved at: $FILEPATH"
+fi
+
+exit 0
